@@ -11,19 +11,31 @@ theme = "hello-friend-ng"
 
   # Metadata mostly used in document's head
   description = "Personal website and Blog of Taylor Wrobel"
-  keywords = "personal, homepage, blog, development, programming, software"
+  keywords = ["personal", "homepage", "blog", "development", "programming", "software"]
   images = [""]
-  homeSubtitle = "Exploring the building, testing, qualification, and destruction of software"
+  homeSubtitle = "Adventures in the creation, testing, qualification, and destruction of software"
 
   # Directory name of your blog content (default is `content/posts`)
   contentTypeName = "posts"
   # Default theme "light" or "dark"
   defaultTheme = "dark"
 
+  [[params.social]]
+    name = "email"
+    url  = "mailto:hi@wrobel.dev"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/twrobel3"
+
+  [[params.social]]
+    name = "linkedin"
+    url  = "https://www.linkedin.com/in/taylorwrobel"
+
 [languages]
   [languages.en]
     title = "Wrobel Dot Dev"
-    subtitle = "Builder and breaker of software"
+    subtitle = "On the building and breaking software"
     keywords = ""
     copyright = "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width: 0; display: inline;\" src=\"/CC-BY-SA_icon.svg\" /></a>"
     readOtherPosts = "Read more"
