@@ -1,7 +1,7 @@
 ---
 title: "Test Features, not Functions"
 date: 2019-03-01T22:20:49-08:00
-draft: true
+draft: false
 ---
 
 ### Nobody is Taught How to Test
