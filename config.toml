@@ -10,9 +10,10 @@ theme = "hello-friend-ng"
   dateformNumTime = "2006-01-02 15:04 -0700"
 
   # Metadata mostly used in document's head
-  description = "Personal website of Taylor Wrobel"
+  description = "Personal website and Blog of Taylor Wrobel"
   keywords = "personal, homepage, blog, development, programming, software"
   images = [""]
+  homeSubtitle = "Exploring the building, testing, qualification, and destruction of software"
 
   # Directory name of your blog content (default is `content/posts`)
   contentTypeName = "posts"
@@ -21,7 +22,7 @@ theme = "hello-friend-ng"
 
 [languages]
   [languages.en]
-    title = "Taylor Wrobel"
+    title = "Wrobel Dot Dev"
     subtitle = "Builder and breaker of software"
     keywords = ""
     copyright = "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-sa/4.0/80x15.png\" /></a>"
