@@ -9,6 +9,8 @@ Apple building test infrastructure.
 
 Want to get in touch?  Shoot me an email at <a href="mailto:hi@wrobel.dev">hi@wrobel.dev</a>
 
-_Note to recruiters_: I'm not currently job seeking, but if you want for me to
+<hr/>
+
+_Note for Recruiters_: I'm not currently job seeking, but if you want for me to
 have your information in the event that my situation changes, feel free to email
 <a href="mailto:recruiting@wrobel.dev">recruiting@wrobel.dev</a>
