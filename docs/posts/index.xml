@@ -6,7 +6,7 @@
         <description>Recent content in Posts on Wrobel Dot Dev</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-sa/4.0/80x15.png&#34; /&gt;&lt;/a&gt;</copyright>
+        <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width: 0; display: inline;&#34; src=&#34;/CC-BY-SA_icon.svg&#34; /&gt;&lt;/a&gt;</copyright>
         <lastBuildDate>Fri, 01 Mar 2019 22:20:49 -0800</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
         
@@ -16,15 +16,27 @@
             <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
             
             <guid>/posts/0001-features-not-functions/</guid>
-            <description>Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given in academia and industry alike around how to write tests.
-For the most part, exposure will be limited to one or two classes requiring unit tests, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage.</description>
+            <description>Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given around how we should write tests.
+For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage.</description>
             <content type="html"><![CDATA[
 
-<h3 id="nobody-is-taught-how-to-test">Nobody is Taught How to Test</h3>
+<h2 id="nobody-is-taught-how-to-test">Nobody is Taught How to Test</h2>
 
-<p>As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write.  Yet there is very little instruction given in academia and industry alike around <em>how</em> to write tests.</p>
+<p>As we learn the trade of building software for industry, we are (hopefully)
+taught that one of the key aspects of being a software engineer is to test the
+code you write.  Yet there is very little instruction given around <em>how</em> we
+should write tests.</p>
 
-<p>For the most part, exposure will be limited to one or two classes requiring unit tests, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage.</p>
+<p>For the most part, exposure will be limited to one or two classes requiring unit
+tests as part of the work submitted, or comments on pull requests asking with
+various levels of politeness to not reduce the code coverage percentage.  Folks
+really do like their green banners, tho, so I can&rsquo;t blame them.</p>
+
+<blockquote>
+<p><em>Green is the prime color of the world, and that from which its loveliness arises.</em></p>
+
+<p><em>- Pedro Calderon de la Barca (Definitely not a software engineer)</em></p>
+</blockquote>
 
 <h1 id="rest-of-article-is-wip"><code>// Rest of article is WIP</code></h1>
 ]]></content>
