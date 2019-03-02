@@ -1,4 +1,47 @@
-baseURL = "http://example.org/"
+title = "Wrobel dot Dev"
+baseurl = "/"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "ananke"
+theme = "hello-friend-ng"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
+
+  # Metadata mostly used in document's head
+  description = "Personal website of Taylor Wrobel"
+  keywords = "personal, homepage, blog, development, programming, software"
+  images = [""]
+
+  # Directory name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+  # Default theme "light" or "dark"
+  defaultTheme = "dark"
+
+[languages]
+  [languages.en]
+    title = "Taylor Wrobel"
+    subtitle = "Builder and breaker of software"
+    keywords = ""
+    copyright = "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-sa/4.0/80x15.png\" /></a>"
+    readOtherPosts = "Read more"
+
+    [languages.en.params.logo]
+      logoText = "cd ./wrobel-dot-dev"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+# And you can even create generic menu
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
+  [[menu.main]]
+    identifier = "blog"
+    name       = "Blog"
+    url        = "/posts"
