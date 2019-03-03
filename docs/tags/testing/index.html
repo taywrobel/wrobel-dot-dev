@@ -23,7 +23,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
 
 
-<link rel="stylesheet" href="/scss/main.min.ca376e7b92d0e775c2913c71d78cf3b031e8ff0891518329140945aaadadb805.css">
+<link rel="stylesheet" href="/scss/main.min.3c8d9b53f62a73c33afb26ea1a505c5f4d143a4b28ecb5ed502c7e92ed5c5ef4.css">
 
 
 
@@ -80,12 +80,70 @@ Countly.q.push(['track_errors']);
    cly.onload = function(){Countly.init()};
    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
+
+function initializeConsent() {
+  
+  
+  if (typeof(localStorage) !== "undefined") {
+      var consents = localStorage.getItem("consents");
+      var refuseUntil = localStorage.getItem("refuseUntil");
+      
+      if(consents && consents !== "[]"){
+          
+          document.getElementById("gdpr-is-opted-in").style.display = 'block';
+          document.getElementById("gdpr-is-opted-out").style.display = 'none';
+          Countly.add_consent(JSON.parse(consents));
+      }
+      else if (!refuseUntil || refuseUntil < Date.now()){
+          
+          document.getElementById("gdpr-consent").style.display = 'block';
+          document.getElementById("gdpr-is-opted-in").style.display = 'none';
+          document.getElementById("gdpr-is-opted-out").style.display = 'block';
+      } else {
+        document.getElementById("gdpr-is-opted-in").style.display = 'none';
+        document.getElementById("gdpr-is-opted-out").style.display = 'block';
+      }
+  } else {
+      
+      
+  }
+}
+
+
+function giveConsent(){
+    
+    var response = ["activity", "interaction", "crashes"];
+    Countly.add_consent(response);
+    localStorage.setItem("consents", JSON.stringify(response));
+    localStorage.setItem("refuseUntil", Date.now())
+    document.getElementById("gdpr-consent").style.display = 'none';
+    if (document.getElementById("gdpr-is-opted-in")) {
+      document.getElementById("gdpr-is-opted-in").style.display = 'block';
+      document.getElementById("gdpr-is-opted-out").style.display = 'none';
+    }
+}
+function removeConsent(refuseDuration){
+    
+    var response = ["activity", "interaction", "crashes"];
+    console.log(Date.now())
+    console.log(Date.now() + refuseDuration)
+    Countly.remove_consent(response);
+    localStorage.setItem("consents", JSON.stringify([]));
+    localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
+    document.getElementById("gdpr-consent").style.display = 'none';
+    if (document.getElementById("gdpr-is-opted-in")) {
+      document.getElementById("gdpr-is-opted-in").style.display = 'none';
+      document.getElementById("gdpr-is-opted-out").style.display = 'block';
+    }
+}
 </script>
+
+
 
 
     </head>
 
-    <body class="dark-theme">
+    <body class="dark-theme" onload="initializeConsent()">
         <noscript><img src='https://stats.wrobel.dev/pixel.png?app_key=47171f6404ee30299e994b23a060ffde89b0c3d3&begin_session=1'/></noscript>
 
         <div class="container">
@@ -105,7 +163,7 @@ Countly.q.push(['track_errors']);
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/privacy">Privacy</a></li>
     </ul>
 </nav>
 
@@ -126,6 +184,17 @@ Countly.q.push(['track_errors']);
         </span>
     </span>
 </header>
+
+            <div id="gdpr-consent">
+  <p>
+  GDPR Notice: This site reports basic user metrics to a private <a href="https://count.ly">Countly</a> server run on Digital
+  Ocean, primarily so that I know if it's worth my time to maintain. <sup>[<a href="/privacy">Details</a>]</sup>
+  </p>
+  <div class="btn-group">
+    <button type="button" class="button" onclick="removeConsent(86400)">Sorry but No Thanks</button>
+    <button type="button" class="button primary" onclick="giveConsent()">I Consent</button>
+  </div>
+</div>
 
 
             <div class="content">

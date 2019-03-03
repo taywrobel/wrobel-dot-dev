@@ -34,5 +34,16 @@ Want to get in touch? Shoot me an email at hi@wrobel.dev
  Note for Recruiters: I&amp;rsquo;m not currently job seeking, but if you would like for me to have your information in the event that my situation changes, feel free to email recruiting@wrobel.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/privacy/</guid>
+      <description>Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
+The information collected is:
+ Sessions: Unique &amp;amp; return visitors, visit length, etc. Page Views: Which pages are viewed and how often Clicks: Where are users navigating to and from Scrolls: How far and how often are users scrolling down the page Errors: Javascript errors thrown by the UI code  I do not sell these metrics or use them for advertising purposes.</description>
+    </item>
+    
   </channel>
 </rss>
