@@ -104,18 +104,24 @@ function initializeConsent() {
       
       if(consents && consents !== "[]"){
           
-          document.getElementById("gdpr-is-opted-in").style.display = 'block';
-          document.getElementById("gdpr-is-opted-out").style.display = 'none';
+          if (document.getElementById("gdpr-is-opted-in")) {
+            document.getElementById("gdpr-is-opted-in").style.display = 'block';
+            document.getElementById("gdpr-is-opted-out").style.display = 'none';
+          }
           Countly.add_consent(JSON.parse(consents));
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
           document.getElementById("gdpr-consent").style.display = 'block';
+          if (document.getElementById("gdpr-is-opted-in")) {
+            document.getElementById("gdpr-is-opted-in").style.display = 'none';
+            document.getElementById("gdpr-is-opted-out").style.display = 'block';
+          }
+      } else {
+        if (document.getElementById("gdpr-is-opted-in")) {
           document.getElementById("gdpr-is-opted-in").style.display = 'none';
           document.getElementById("gdpr-is-opted-out").style.display = 'block';
-      } else {
-        document.getElementById("gdpr-is-opted-in").style.display = 'none';
-        document.getElementById("gdpr-is-opted-out").style.display = 'block';
+        }
       }
   } else {
       
