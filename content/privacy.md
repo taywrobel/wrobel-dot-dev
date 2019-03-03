@@ -1,18 +1,18 @@
 # Privacy Details
 
-This site uses cookies and local storage to collect basic information about the visitors here.  The data is
-sent to a private [Countly](https://count.ly) server deployed on Digital Ocean.
+This site uses cookies and local storage to collect basic information about the visitors here.  The data is sent to a
+private [Countly](https://count.ly) server deployed on Digital Ocean.
 
 The information collected is:
 
- - **Sessions**: Unique & return visitors, visit length, etc.
- - **Page Views**: Which pages are viewed and how often
- - **Clicks**: Where are users navigating to and from
- - **Scrolls**: How far and how often are users scrolling down the page
- - **Errors**: Javascript errors thrown by the UI code
+ - **Sessions**: Metrics on when, how often and how long users use the website
+ - **Page Views**: Metrics on which views/pages users access
+ - **Clicks**: Reports user clicks to form a heat map, including clicks following links
+ - **Scrolls**: Reports user scrolling to form a scroll heat map
+ - **Crashes**: Reports javascript errors thrown by the UI code
 
-I do not sell these metrics or use them for advertising purposes.  They are purely for my own reference when it comes
-to looking at how people are engaging with the content here.
+I do not sell these metrics or use them for any advertising purposes.  They are purely for my own reference when it
+comes to looking at how people are engaging with the content here.
 
 #### Trust, but Verify
 
@@ -34,6 +34,6 @@ You are currently opted <b>IN</b> to the collection of data as described on this
 You are currently opted <b>OUT</b> of the collection of data as described on this page.
 <br>No data is about your activity here is being recorded.
 </p>
-<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Notice Indefinitely</button>
+<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Banner Notice Indefinitely</button>
 <button type="button" class="button primary" onclick="giveConsent()">Opt-In</button>
 </div>
