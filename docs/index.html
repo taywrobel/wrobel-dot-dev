@@ -66,6 +66,11 @@ Countly.app_key = '47171f6404ee30299e994b23a060ffde89b0c3d3';
 Countly.url = 'https://stats.wrobel.dev';
 Countly.require_consent = true;
 
+Countly.q.push(['group_features', {
+    activity:["sessions","views"],
+    interaction:["scrolls","clicks"]
+}]);
+
 Countly.q.push(['track_sessions']);
 Countly.q.push(['track_pageview']);
 Countly.q.push(['track_clicks']);
@@ -95,7 +100,7 @@ function initializeConsent() {
             document.getElementById("gdpr-is-opted-in").style.display = 'block';
             document.getElementById("gdpr-is-opted-out").style.display = 'none';
           }
-          Countly.add_consent(JSON.parse(consents));
+          Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
@@ -120,7 +125,7 @@ function initializeConsent() {
 function giveConsent(){
     
     var response = ["activity", "interaction", "crashes"];
-    Countly.add_consent(response);
+    Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
     document.getElementById("gdpr-consent").style.display = 'none';
@@ -132,9 +137,7 @@ function giveConsent(){
 function removeConsent(refuseDuration){
     
     var response = ["activity", "interaction", "crashes"];
-    console.log(Date.now())
-    console.log(Date.now() + refuseDuration)
-    Countly.remove_consent(response);
+    Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
     document.getElementById("gdpr-consent").style.display = 'none';

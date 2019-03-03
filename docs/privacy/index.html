@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
 The information collected is:
- Sessions: Unique &amp;amp; return visitors, visit length, etc. Page Views: Which pages are viewed and how often Clicks: Where are users navigating to and from Scrolls: How far and how often are users scrolling down the page Errors: Javascript errors thrown by the UI code  I do not sell these metrics or use them for advertising purposes."/>
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/privacy/" />
@@ -39,11 +39,11 @@ The information collected is:
 <meta itemprop="name" content="">
 <meta itemprop="description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
 The information collected is:
- Sessions: Unique &amp; return visitors, visit length, etc. Page Views: Which pages are viewed and how often Clicks: Where are users navigating to and from Scrolls: How far and how often are users scrolling down the page Errors: Javascript errors thrown by the UI code  I do not sell these metrics or use them for advertising purposes.">
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes.">
 
 
 
-<meta itemprop="wordCount" content="212">
+<meta itemprop="wordCount" content="222">
 
 
 
@@ -54,7 +54,7 @@ The information collected is:
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
 The information collected is:
- Sessions: Unique &amp; return visitors, visit length, etc. Page Views: Which pages are viewed and how often Clicks: Where are users navigating to and from Scrolls: How far and how often are users scrolling down the page Errors: Javascript errors thrown by the UI code  I do not sell these metrics or use them for advertising purposes."/>
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes."/>
 
 
 
@@ -75,6 +75,11 @@ Countly.q = Countly.q || [];
 Countly.app_key = '47171f6404ee30299e994b23a060ffde89b0c3d3';
 Countly.url = 'https://stats.wrobel.dev';
 Countly.require_consent = true;
+
+Countly.q.push(['group_features', {
+    activity:["sessions","views"],
+    interaction:["scrolls","clicks"]
+}]);
 
 Countly.q.push(['track_sessions']);
 Countly.q.push(['track_pageview']);
@@ -105,7 +110,7 @@ function initializeConsent() {
             document.getElementById("gdpr-is-opted-in").style.display = 'block';
             document.getElementById("gdpr-is-opted-out").style.display = 'none';
           }
-          Countly.add_consent(JSON.parse(consents));
+          Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
@@ -130,7 +135,7 @@ function initializeConsent() {
 function giveConsent(){
     
     var response = ["activity", "interaction", "crashes"];
-    Countly.add_consent(response);
+    Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
     document.getElementById("gdpr-consent").style.display = 'none';
@@ -142,9 +147,7 @@ function giveConsent(){
 function removeConsent(refuseDuration){
     
     var response = ["activity", "interaction", "crashes"];
-    console.log(Date.now())
-    console.log(Date.now() + refuseDuration)
-    Countly.remove_consent(response);
+    Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
     document.getElementById("gdpr-consent").style.display = 'none';
@@ -233,21 +236,21 @@ function removeConsent(refuseDuration){
 
 <h1 id="privacy-details">Privacy Details</h1>
 
-<p>This site uses cookies and local storage to collect basic information about the visitors here.  The data is
-sent to a private <a href="https://count.ly">Countly</a> server deployed on Digital Ocean.</p>
+<p>This site uses cookies and local storage to collect basic information about the visitors here.  The data is sent to a
+private <a href="https://count.ly">Countly</a> server deployed on Digital Ocean.</p>
 
 <p>The information collected is:</p>
 
 <ul>
-<li><strong>Sessions</strong>: Unique &amp; return visitors, visit length, etc.</li>
-<li><strong>Page Views</strong>: Which pages are viewed and how often</li>
-<li><strong>Clicks</strong>: Where are users navigating to and from</li>
-<li><strong>Scrolls</strong>: How far and how often are users scrolling down the page</li>
-<li><strong>Errors</strong>: Javascript errors thrown by the UI code</li>
+<li><strong>Sessions</strong>: Metrics on when, how often and how long users use the website</li>
+<li><strong>Page Views</strong>: Metrics on which views/pages users access</li>
+<li><strong>Clicks</strong>: Reports user clicks to form a heat map, including clicks following links</li>
+<li><strong>Scrolls</strong>: Reports user scrolling to form a scroll heat map</li>
+<li><strong>Crashes</strong>: Reports javascript errors thrown by the UI code</li>
 </ul>
 
-<p>I do not sell these metrics or use them for advertising purposes.  They are purely for my own reference when it comes
-to looking at how people are engaging with the content here.</p>
+<p>I do not sell these metrics or use them for any advertising purposes.  They are purely for my own reference when it
+comes to looking at how people are engaging with the content here.</p>
 
 <h4 id="trust-but-verify">Trust, but Verify</h4>
 
@@ -269,7 +272,7 @@ You are currently opted <b>IN</b> to the collection of data as described on this
 You are currently opted <b>OUT</b> of the collection of data as described on this page.
 <br>No data is about your activity here is being recorded.
 </p>
-<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Notice Indefinitely</button>
+<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Banner Notice Indefinitely</button>
 <button type="button" class="button primary" onclick="giveConsent()">Opt-In</button>
 </div>
 

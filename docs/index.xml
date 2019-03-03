@@ -42,7 +42,7 @@ Want to get in touch? Shoot me an email at hi@wrobel.dev
       <guid>/privacy/</guid>
       <description>Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
 The information collected is:
- Sessions: Unique &amp;amp; return visitors, visit length, etc. Page Views: Which pages are viewed and how often Clicks: Where are users navigating to and from Scrolls: How far and how often are users scrolling down the page Errors: Javascript errors thrown by the UI code  I do not sell these metrics or use them for advertising purposes.</description>
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes.</description>
     </item>
     
   </channel>
