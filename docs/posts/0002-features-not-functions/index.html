@@ -9,7 +9,7 @@
 For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
-<link rel="canonical" href="/posts/0001-features-not-functions/" />
+<link rel="canonical" href="/posts/0002-features-not-functions/" />
 
 
     <title>
@@ -64,11 +64,38 @@ For the most part, exposure will be limited to one or two classes requiring unit
 
 
 
+<script type='text/javascript'>
+
+var Countly = Countly || {};
+Countly.q = Countly.q || [];
+
+
+Countly.app_key = '47171f6404ee30299e994b23a060ffde89b0c3d3';
+Countly.url = 'https://stats.wrobel.dev';
+
+Countly.q.push(['track_sessions']);
+Countly.q.push(['track_pageview']);
+Countly.q.push(['track_clicks']);
+Countly.q.push(['track_scrolls']);
+Countly.q.push(['track_errors']);
+
+
+(function() {
+   var cly = document.createElement('script'); cly.type = 'text/javascript';
+   cly.async = true;
+   
+   cly.src = 'https://stats.wrobel.dev/sdk/web/countly.min.js';
+   cly.onload = function(){Countly.init()};
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+})();
+</script>
 
 
     </head>
 
     <body class="dark-theme">
+        <noscript><img src='https://stats.wrobel.dev/pixel.png?app_key=47171f6404ee30299e994b23a060ffde89b0c3d3&begin_session=1'/></noscript>
+
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -122,7 +149,7 @@ For the most part, exposure will be limited to one or two classes requiring unit
         </div>
 
         <article>
-            <h2 class="post-title"><a href="/posts/0001-features-not-functions/">Test Features, not Functions</a></h2>
+            <h2 class="post-title"><a href="/posts/0002-features-not-functions/">Test Features, not Functions</a></h2>
 
             
 
