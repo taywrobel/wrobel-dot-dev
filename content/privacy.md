@@ -34,7 +34,7 @@ nothing has been changed from what's shown in the repository.
 <p>
 You are currently opted <b>IN</b> to the collection of data as described on this page.  You may opt-out at any time.
 </p>
-<button type="button" class="button" onclick="removeConsent(86400)">Opt-Out</button>
+<button type="button" class="button" onclick="removeConsent(900)">Opt-Out</button>
 </div>
 
 <div id="gdpr-is-opted-out">
