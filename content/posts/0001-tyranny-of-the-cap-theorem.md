@@ -39,8 +39,8 @@ theorem that's often not well covered.
 
 The theorem, as proposed by Eric Brewer, is summarized [on Wikipedia](https://en.wikipedia.org/wiki/CAP_theorem) as:
 
-> _It is impossible for a distributed data store to simultaneously provide more_
-> _than two out of the following three guarantees:_
+> _It is impossible for a distributed data store to simultaneously provide more than two out of the following three_
+> _guarantees:_
 >
 > - _\(C)onsistency: Every read receives the most recent write or an error_
 > - _(A)vailability: Every request receives a (non-error) response – without the guarantee that it contains the most_
@@ -61,24 +61,24 @@ formal definitions for Consistency, Availability, and Partition tolerance than w
 from an entirely theoretical perspective, which is necessary for making provable assertions, but often is at odds with
 practical considerations of a real world system.
 
-To illustrate this, let's look at that definition of Partition tolerance again:
+To illustrate this, let's look at that definition of partition tolerance again:
 
 > _The system continues to operate despite an arbitrary number of messages being dropped <b>(or delayed)</b> by the_
 > _network between nodes_
 
-I'm sure you can think of plenty of situations where messages may be delayed in an actual computer network.  Even
-completely non-technical people probably can. We've all had websites get slower or hang as your device gets too far
-from the wifi router, or when we go through a tunnel while connected to LTE.
+I'm sure you can think of some of situations where messages may be delayed in an real-world computer network.  Even
+completely non-technical people can. We've all had websites get slower or hang as your device gets too far from the wifi
+router, or when we go through a tunnel while connected to LTE.
 
-A more difficult question is actually "Can you think of any situation in a real world network where messages are **not**
+A more tricky question is actually "Can you think of any situation in a real world network where messages are **not**
 getting delayed?"
 
-The messages aren't being sent between devices instantaneously.  There is always a delay due to, at a minimum, the
+The messages aren't being sent between devices instantaneously.  There is always some delay due to, at a minimum, the
 latency of the network.  And this is really at the heart of why the "P" in CAP theorem is required:
 
-> **Latency is a network partition**.
+> **Latency is a network partition**
 
-The reality is that any network is in a constant state of partition.  The delay in messages under normal operation is
+The reality is that all networks are in a constant state of partition.  The delay of messages under normal operation is
 normally fairly small and consistent, so is easier to reason about, but from the point of view of the computers
 messaging one another, they have no guarantee of how quickly they'll get a response, if at all.
 
@@ -88,18 +88,51 @@ almost immediately become corrupted, or the system will crash.
 # The Wrobel Global Deli
 
 Now that we understand why we're forced to support partition tolerance in our distributed systems, let's look at the
-choice that we get to make; the tradeoff between consistency and availability.
+choice that we do get to make; the tradeoff between consistency and availability.
 
-Let's say that I want to make the world's first globally distributed deli.  I have no idea how we're going to transport
-food around the world, but that sounds like a good problem for someone else.  I do know one thing however, which is that
-our Deli needs one of those classic take a number systems:
+Let's say that I want to make the world's first globally distributed deli.  I have no idea how we're going to distribute
+food around the world, but that sounds like a good problem for someone else to solve.  I do know one thing however,
+which is that our deli needs one of those classic take a number systems:
 
 {{< figure src="/take-a-ticket.jpeg" alt="Take a ticket machine" position="center" style="border-radius: 8px;"
 caption="Holds society together" captionPosition="center" >}}
 
+It's a numeric value that counts up by 1 every time we assign a number to someone waiting. Fairness is one of the
+cornerstones of society, and we want our take a number system to be as fair as possible.  Since our deli is operating
+globally, we want to have one ticket sequence for all of our customers. It's a strictly first-come, first-served system
+where we process deli orders in the order that people made them.  How hard can that be?
+
+## Humble Beginnings
+
+Lets start our deli at a single location, and why not pick London?  The British seem like a meat-loving folk.
+
+All the requests come in to the one deli, it uses its counter, incrementing as ticket requests come in, and hands out
+those numbers.  Let's see how this system fairs against CAP:
+
+> _\(C)onsistency: Every read receives the most recent write or an error_
+
+Well look at that, each read does indeed get the most recent value, since the value is a simple counter at the one deli
+location!  How about availability?
+
+> _(A)vailability: Every request receives a (non-error) response – without the guarantee that it contains the most_
+> _recent write_
+
+Well, unless the deli is closed, our ticket machine will be able to respond to everyone without waiting, since it has
+all the information. So it looks like this system is both Consistent and Available...  How is that possible?  Well,
+we've completely ignored the "distributed" aspect of the distributed system, and that decision soon starts to bite us.
+
+It isn't long before our customers start complaining.  The first complaints come in from New Zealand.  It simply takes
+too long to talk to our deli, what with it being on the other side of the planet and all.  We also have a bigger issue
+in that the deli closes every night in local London time.  But that means that for much of Asia, Australia, and even
+the Americas, the deli is closed at prime meat ordering time!
+
+It's time to expand.
+
 ## Consistency vs. Availability
 
-We all know that at the
+We expand our deli as simply as possible; we add a second location.  And we decide to be clever, and put the second
+location on the opposite side of the earth of the first.  This way, each deli can effectively serve a hemisphere.  Now
+to just update that counter logic and we're good to go!
 
 ## Light is Just Too Slow
 
