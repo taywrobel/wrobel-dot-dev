@@ -93,24 +93,14 @@ function initializeConsent() {
       
       if(consents && consents !== "[]"){
           
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'block';
-            document.getElementById("gdpr-is-opted-out").style.display = 'none';
-          }
+          toggleConsentDisplay(true);
           Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
-          document.getElementById("gdpr-consent").style.display = 'block';
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'none';
-            document.getElementById("gdpr-is-opted-out").style.display = 'block';
-          }
+          toggleConsentDisplay(null);
       } else {
-        if (document.getElementById("gdpr-is-opted-in")) {
-          document.getElementById("gdpr-is-opted-in").style.display = 'none';
-          document.getElementById("gdpr-is-opted-out").style.display = 'block';
-        }
+        toggleConsentDisplay(false);
       }
   } else {
       
@@ -118,6 +108,29 @@ function initializeConsent() {
   }
 }
 
+function setDisplayIfPresent(id, display) {
+  if (document.getElementById(id) !== null) {
+    document.getElementById(id).style.display = display
+  }
+}
+
+function toggleConsentDisplay(isOptedIn) {
+  if (isOptedIn === true) {
+    setDisplayIfPresent("gdpr-consent", "none");
+    setDisplayIfPresent("gdpr-is-opted-in", "block");
+    setDisplayIfPresent("gdpr-is-opted-out", "none");
+  } else {
+    if (isOptedIn === false) {
+      setDisplayIfPresent("gdpr-consent", "none");
+    } else {
+      
+      
+      setDisplayIfPresent("gdpr-consent", "block");
+    }
+    setDisplayIfPresent("gdpr-is-opted-in", "none");
+    setDisplayIfPresent("gdpr-is-opted-out", "block");
+  }
+}
 
 function giveConsent(){
     
@@ -125,11 +138,7 @@ function giveConsent(){
     Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'block';
-      document.getElementById("gdpr-is-opted-out").style.display = 'none';
-    }
+    toggleConsentDisplay(true);
 }
 function removeConsent(refuseDuration){
     
@@ -137,11 +146,7 @@ function removeConsent(refuseDuration){
     Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'none';
-      document.getElementById("gdpr-is-opted-out").style.display = 'block';
-    }
+    toggleConsentDisplay(false);
 }
 </script>
 
@@ -170,7 +175,8 @@ function removeConsent(refuseDuration){
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/privacy">Privacy</a></li>
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+        <li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li>
     </ul>
 </nav>
 

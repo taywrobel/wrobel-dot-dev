@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Development on Wrobel Dot Dev</title>
-    <link>/tags/development/</link>
-    <description>Recent content in Development on Wrobel Dot Dev</description>
+    <title>Blog on Wrobel Dot Dev</title>
+    <link>/tags/blog/</link>
+    <description>Recent content in Blog on Wrobel Dot Dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width: 0; display: inline;&#34; src=&#34;/CC-BY-SA_icon.svg&#34; /&gt;&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 04 Mar 2019 17:39:29 +0000</lastBuildDate>
     
-	<atom:link href="/tags/development/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

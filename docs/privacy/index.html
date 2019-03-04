@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="author" content="">
 <meta name="description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
-The information collected is:
- Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes."/>
+The information that is collected includes:
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code GeoIP: Coarse location information based on IP data (no GPS or other granular data is collected) UserAgent: Data set by your browser with system information, including:  Browser: Web browser type and version System: Operating system and version Resolution: Screen size of the device   I do not sell these metrics or use them for any advertising purposes."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/privacy/" />
@@ -38,12 +38,12 @@ The information collected is:
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
-The information collected is:
- Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes.">
+The information that is collected includes:
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code GeoIP: Coarse location information based on IP data (no GPS or other granular data is collected) UserAgent: Data set by your browser with system information, including:  Browser: Web browser type and version System: Operating system and version Resolution: Screen size of the device   I do not sell these metrics or use them for any advertising purposes.">
 
 
 
-<meta itemprop="wordCount" content="222">
+<meta itemprop="wordCount" content="327">
 
 
 
@@ -53,8 +53,8 @@ The information collected is:
 
 <meta name="twitter:title" content=""/>
 <meta name="twitter:description" content="Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
-The information collected is:
- Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes."/>
+The information that is collected includes:
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code GeoIP: Coarse location information based on IP data (no GPS or other granular data is collected) UserAgent: Data set by your browser with system information, including:  Browser: Web browser type and version System: Operating system and version Resolution: Screen size of the device   I do not sell these metrics or use them for any advertising purposes."/>
 
 
 
@@ -106,24 +106,14 @@ function initializeConsent() {
       
       if(consents && consents !== "[]"){
           
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'block';
-            document.getElementById("gdpr-is-opted-out").style.display = 'none';
-          }
+          toggleConsentDisplay(true);
           Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
-          document.getElementById("gdpr-consent").style.display = 'block';
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'none';
-            document.getElementById("gdpr-is-opted-out").style.display = 'block';
-          }
+          toggleConsentDisplay(null);
       } else {
-        if (document.getElementById("gdpr-is-opted-in")) {
-          document.getElementById("gdpr-is-opted-in").style.display = 'none';
-          document.getElementById("gdpr-is-opted-out").style.display = 'block';
-        }
+        toggleConsentDisplay(false);
       }
   } else {
       
@@ -131,6 +121,29 @@ function initializeConsent() {
   }
 }
 
+function setDisplayIfPresent(id, display) {
+  if (document.getElementById(id) !== null) {
+    document.getElementById(id).style.display = display
+  }
+}
+
+function toggleConsentDisplay(isOptedIn) {
+  if (isOptedIn === true) {
+    setDisplayIfPresent("gdpr-consent", "none");
+    setDisplayIfPresent("gdpr-is-opted-in", "block");
+    setDisplayIfPresent("gdpr-is-opted-out", "none");
+  } else {
+    if (isOptedIn === false) {
+      setDisplayIfPresent("gdpr-consent", "none");
+    } else {
+      
+      
+      setDisplayIfPresent("gdpr-consent", "block");
+    }
+    setDisplayIfPresent("gdpr-is-opted-in", "none");
+    setDisplayIfPresent("gdpr-is-opted-out", "block");
+  }
+}
 
 function giveConsent(){
     
@@ -138,11 +151,7 @@ function giveConsent(){
     Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'block';
-      document.getElementById("gdpr-is-opted-out").style.display = 'none';
-    }
+    toggleConsentDisplay(true);
 }
 function removeConsent(refuseDuration){
     
@@ -150,11 +159,7 @@ function removeConsent(refuseDuration){
     Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'none';
-      document.getElementById("gdpr-is-opted-out").style.display = 'block';
-    }
+    toggleConsentDisplay(false);
 }
 </script>
 
@@ -183,7 +188,8 @@ function removeConsent(refuseDuration){
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/privacy">Privacy</a></li>
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+        <li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li>
     </ul>
 </nav>
 
@@ -239,7 +245,7 @@ function removeConsent(refuseDuration){
 <p>This site uses cookies and local storage to collect basic information about the visitors here.  The data is sent to a
 private <a href="https://count.ly">Countly</a> server deployed on Digital Ocean.</p>
 
-<p>The information collected is:</p>
+<p>The information that is collected includes:</p>
 
 <ul>
 <li><strong>Sessions</strong>: Metrics on when, how often and how long users use the website</li>
@@ -247,6 +253,14 @@ private <a href="https://count.ly">Countly</a> server deployed on Digital Ocean.
 <li><strong>Clicks</strong>: Reports user clicks to form a heat map, including clicks following links</li>
 <li><strong>Scrolls</strong>: Reports user scrolling to form a scroll heat map</li>
 <li><strong>Crashes</strong>: Reports javascript errors thrown by the UI code</li>
+<li><strong>GeoIP</strong>: Coarse location information based on IP data (no GPS or other granular data is collected)</li>
+<li><strong>UserAgent</strong>: Data set by your browser with system information, including:
+
+<ul>
+<li><em>Browser</em>: Web browser type and version</li>
+<li><em>System</em>: Operating system and version</li>
+<li><em>Resolution</em>: Screen size of the device</li>
+</ul></li>
 </ul>
 
 <p>I do not sell these metrics or use them for any advertising purposes.  They are purely for my own reference when it
@@ -257,6 +271,9 @@ comes to looking at how people are engaging with the content here.</p>
 <p>The code which records metrics to the Countly server, as with the entirety of this site, is available on Github if you&rsquo;d
 like to review it.  The specific file which handles the metrics configuration, as well as opt-in and opt-out logic can
 be found <a href="https://github.com/twrobel3/hugo-theme-hello-friend-ng/blob/master/layouts/partials/countly.html">here</a>.</p>
+
+<p>And of course, since all that code is running client-side, you can pop open your browser&rsquo;s web inspector and verify that
+nothing has been changed from what&rsquo;s shown in the repository.</p>
 
 <hr>
 
@@ -270,10 +287,16 @@ You are currently opted <b>IN</b> to the collection of data as described on this
 <div id="gdpr-is-opted-out">
 <p>
 You are currently opted <b>OUT</b> of the collection of data as described on this page.
-<br>No data is about your activity here is being recorded.
+<br>No data about your activity here is being recorded.
 </p>
-<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Banner Notice Indefinitely</button>
+<p>
+If you'd like, you may opt-in, or write a key to <code>localStorage</code> which will prevent the GDPR banner from
+re-appearing at the top of this site after 15 minutes.
+</p>
+<p>
+<button type="button" class="button" onclick="removeConsent(3078000000)">Hide GDPR Notice for this Browser</button>
 <button type="button" class="button primary" onclick="giveConsent()">Opt-In</button>
+</p>
 </div>
 
             </div>

@@ -96,24 +96,14 @@ function initializeConsent() {
       
       if(consents && consents !== "[]"){
           
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'block';
-            document.getElementById("gdpr-is-opted-out").style.display = 'none';
-          }
+          toggleConsentDisplay(true);
           Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
-          document.getElementById("gdpr-consent").style.display = 'block';
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'none';
-            document.getElementById("gdpr-is-opted-out").style.display = 'block';
-          }
+          toggleConsentDisplay(null);
       } else {
-        if (document.getElementById("gdpr-is-opted-in")) {
-          document.getElementById("gdpr-is-opted-in").style.display = 'none';
-          document.getElementById("gdpr-is-opted-out").style.display = 'block';
-        }
+        toggleConsentDisplay(false);
       }
   } else {
       
@@ -121,6 +111,29 @@ function initializeConsent() {
   }
 }
 
+function setDisplayIfPresent(id, display) {
+  if (document.getElementById(id) !== null) {
+    document.getElementById(id).style.display = display
+  }
+}
+
+function toggleConsentDisplay(isOptedIn) {
+  if (isOptedIn === true) {
+    setDisplayIfPresent("gdpr-consent", "none");
+    setDisplayIfPresent("gdpr-is-opted-in", "block");
+    setDisplayIfPresent("gdpr-is-opted-out", "none");
+  } else {
+    if (isOptedIn === false) {
+      setDisplayIfPresent("gdpr-consent", "none");
+    } else {
+      
+      
+      setDisplayIfPresent("gdpr-consent", "block");
+    }
+    setDisplayIfPresent("gdpr-is-opted-in", "none");
+    setDisplayIfPresent("gdpr-is-opted-out", "block");
+  }
+}
 
 function giveConsent(){
     
@@ -128,11 +141,7 @@ function giveConsent(){
     Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'block';
-      document.getElementById("gdpr-is-opted-out").style.display = 'none';
-    }
+    toggleConsentDisplay(true);
 }
 function removeConsent(refuseDuration){
     
@@ -140,11 +149,7 @@ function removeConsent(refuseDuration){
     Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'none';
-      document.getElementById("gdpr-is-opted-out").style.display = 'block';
-    }
+    toggleConsentDisplay(false);
 }
 </script>
 
@@ -173,7 +178,8 @@ function removeConsent(refuseDuration){
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/privacy">Privacy</a></li>
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+        <li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li>
     </ul>
 </nav>
 
@@ -211,7 +217,7 @@ function removeConsent(refuseDuration){
                 
     <div id="home-center">
         <h1 id="home-title">Wrobel Dot Dev</h1>
-            <p id="home-subtitle">Adventures in the creation, testing, qualification, and destruction of software</p>
+            <p id="home-subtitle">On the creation, testing, qualification, and destruction of software</p>
             <div id="home-social">
                 &nbsp; <a href="mailto:hi@wrobel.dev" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a> &nbsp;&nbsp; <a href="https://github.com/twrobel3" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/taylorwrobel" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a> &nbsp;
             </div>

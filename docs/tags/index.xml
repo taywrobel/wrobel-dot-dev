@@ -7,44 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width: 0; display: inline;&#34; src=&#34;/CC-BY-SA_icon.svg&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 01 Mar 2019 22:20:49 -0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 17:39:29 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Coverage</title>
-      <link>/tags/coverage/</link>
-      <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
+      <title>Blog</title>
+      <link>/tags/blog/</link>
+      <pubDate>Mon, 04 Mar 2019 17:39:29 +0000</pubDate>
       
-      <guid>/tags/coverage/</guid>
+      <guid>/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Development</title>
       <link>/tags/development/</link>
-      <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
+      <pubDate>Mon, 04 Mar 2019 17:39:29 +0000</pubDate>
       
       <guid>/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Opinion</title>
-      <link>/tags/opinion/</link>
-      <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
+      <title>Wip</title>
+      <link>/tags/wip/</link>
+      <pubDate>Mon, 04 Mar 2019 17:39:29 +0000</pubDate>
       
-      <guid>/tags/opinion/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Testing</title>
-      <link>/tags/testing/</link>
-      <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
-      
-      <guid>/tags/testing/</guid>
+      <guid>/tags/wip/</guid>
       <description></description>
     </item>
     

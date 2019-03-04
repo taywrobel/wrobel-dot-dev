@@ -7,19 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width: 0; display: inline;&#34; src=&#34;/CC-BY-SA_icon.svg&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 01 Mar 2019 22:20:49 -0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 17:39:29 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test Features, not Functions</title>
-      <link>/posts/0002-features-not-functions/</link>
-      <pubDate>Fri, 01 Mar 2019 22:20:49 -0800</pubDate>
+      <title>Blog WIP</title>
+      <link>/posts/0000-wip/</link>
+      <pubDate>Mon, 04 Mar 2019 17:39:29 +0000</pubDate>
       
-      <guid>/posts/0002-features-not-functions/</guid>
-      <description>Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given around how we should write tests.
-For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage.</description>
+      <guid>/posts/0000-wip/</guid>
+      <description> First blog post is a work in progress </description>
     </item>
     
     <item>
@@ -28,10 +27,9 @@ For the most part, exposure will be limited to one or two classes requiring unit
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>What is this? It&amp;rsquo;s a blog. I figured that was obvious, yet here we are in the about section. As for the person behind the blog, my name is Taylor, and my favorite part about building software is breaking it.
-I&amp;rsquo;ve been a software engineer since graduating in 2013, and currently work at Apple building test infrastructure.
-Want to get in touch? Shoot me an email at hi@wrobel.dev
- Note for Recruiters: I&amp;rsquo;m not currently job seeking, but if you would like for me to have your information in the event that my situation changes, feel free to email recruiting@wrobel.</description>
+      <description>What is this? It&amp;rsquo;s an online blog. I figured that was obvious, yet here we are looking at the &amp;ldquo;about&amp;rdquo; section.
+As for the person behind the blog, my name is Taylor, and my favorite part about building software is breaking it.
+I&amp;rsquo;ve been a programmer since graduating in with a B.S. in Computer Science in 2013. I&amp;rsquo;ve worked at Palantir as a simulation software engineer, took a detour through the startup world for a few years, and currently work at Apple building test infrastructure.</description>
     </item>
     
     <item>
@@ -41,8 +39,8 @@ Want to get in touch? Shoot me an email at hi@wrobel.dev
       
       <guid>/privacy/</guid>
       <description>Privacy Details This site uses cookies and local storage to collect basic information about the visitors here. The data is sent to a private Countly server deployed on Digital Ocean.
-The information collected is:
- Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code  I do not sell these metrics or use them for any advertising purposes.</description>
+The information that is collected includes:
+ Sessions: Metrics on when, how often and how long users use the website Page Views: Metrics on which views/pages users access Clicks: Reports user clicks to form a heat map, including clicks following links Scrolls: Reports user scrolling to form a scroll heat map Crashes: Reports javascript errors thrown by the UI code GeoIP: Coarse location information based on IP data (no GPS or other granular data is collected) UserAgent: Data set by your browser with system information, including:  Browser: Web browser type and version System: Operating system and version Resolution: Screen size of the device   I do not sell these metrics or use them for any advertising purposes.</description>
     </item>
     
   </channel>

@@ -5,16 +5,15 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="author" content="">
-<meta name="description" content="Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given around how we should write tests.
-For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage."/>
+<meta name="description" content=" First blog post is a work in progress "/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
-<link rel="canonical" href="/posts/0002-features-not-functions/" />
+<link rel="canonical" href="/posts/0000-wip/" />
 
 
     <title>
         
-            Test Features, not Functions :: Wrobel Dot Dev  — On the building and breaking software
+            Blog WIP :: Wrobel Dot Dev  — On the building and breaking software
         
     </title>
 
@@ -35,28 +34,26 @@ For the most part, exposure will be limited to one or two classes requiring unit
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 <link rel="shortcut icon" href="/favicon.ico">
 
-<meta itemprop="name" content="Test Features, not Functions">
-<meta itemprop="description" content="Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given around how we should write tests.
-For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage.">
+<meta itemprop="name" content="Blog WIP">
+<meta itemprop="description" content=" First blog post is a work in progress ">
 
 
-<meta itemprop="datePublished" content="2019-03-01T22:20:49-08:00" />
-<meta itemprop="dateModified" content="2019-03-01T22:20:49-08:00" />
-<meta itemprop="wordCount" content="136">
+<meta itemprop="datePublished" content="2019-03-04T17:39:29&#43;00:00" />
+<meta itemprop="dateModified" content="2019-03-04T17:39:29&#43;00:00" />
+<meta itemprop="wordCount" content="8">
 
 
 
-<meta itemprop="keywords" content="development,testing,coverage,opinion," />
+<meta itemprop="keywords" content="development,blog,wip," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
-<meta name="twitter:title" content="Test Features, not Functions"/>
-<meta name="twitter:description" content="Nobody is Taught How to Test As we learn the trade of building software for industry, we are (hopefully) taught that one of the key aspects of being a software engineer is to test the code you write. Yet there is very little instruction given around how we should write tests.
-For the most part, exposure will be limited to one or two classes requiring unit tests as part of the work submitted, or comments on pull requests asking with various levels of politeness to not reduce the code coverage percentage."/>
+<meta name="twitter:title" content="Blog WIP"/>
+<meta name="twitter:description" content=" First blog post is a work in progress "/>
 
 
 
-<meta property="article:published_time" content="2019-03-01 22:20:49 -0800 PST" />
+<meta property="article:published_time" content="2019-03-04 17:39:29.239 &#43;0000 UTC" />
 
 
 
@@ -104,24 +101,14 @@ function initializeConsent() {
       
       if(consents && consents !== "[]"){
           
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'block';
-            document.getElementById("gdpr-is-opted-out").style.display = 'none';
-          }
+          toggleConsentDisplay(true);
           Countly.q.push(['add_consent', JSON.parse(consents)]);
       }
       else if (!refuseUntil || refuseUntil < Date.now()){
           
-          document.getElementById("gdpr-consent").style.display = 'block';
-          if (document.getElementById("gdpr-is-opted-in")) {
-            document.getElementById("gdpr-is-opted-in").style.display = 'none';
-            document.getElementById("gdpr-is-opted-out").style.display = 'block';
-          }
+          toggleConsentDisplay(null);
       } else {
-        if (document.getElementById("gdpr-is-opted-in")) {
-          document.getElementById("gdpr-is-opted-in").style.display = 'none';
-          document.getElementById("gdpr-is-opted-out").style.display = 'block';
-        }
+        toggleConsentDisplay(false);
       }
   } else {
       
@@ -129,6 +116,29 @@ function initializeConsent() {
   }
 }
 
+function setDisplayIfPresent(id, display) {
+  if (document.getElementById(id) !== null) {
+    document.getElementById(id).style.display = display
+  }
+}
+
+function toggleConsentDisplay(isOptedIn) {
+  if (isOptedIn === true) {
+    setDisplayIfPresent("gdpr-consent", "none");
+    setDisplayIfPresent("gdpr-is-opted-in", "block");
+    setDisplayIfPresent("gdpr-is-opted-out", "none");
+  } else {
+    if (isOptedIn === false) {
+      setDisplayIfPresent("gdpr-consent", "none");
+    } else {
+      
+      
+      setDisplayIfPresent("gdpr-consent", "block");
+    }
+    setDisplayIfPresent("gdpr-is-opted-in", "none");
+    setDisplayIfPresent("gdpr-is-opted-out", "block");
+  }
+}
 
 function giveConsent(){
     
@@ -136,11 +146,7 @@ function giveConsent(){
     Countly.q.push(['add_consent', response]);
     localStorage.setItem("consents", JSON.stringify(response));
     localStorage.setItem("refuseUntil", Date.now())
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'block';
-      document.getElementById("gdpr-is-opted-out").style.display = 'none';
-    }
+    toggleConsentDisplay(true);
 }
 function removeConsent(refuseDuration){
     
@@ -148,11 +154,7 @@ function removeConsent(refuseDuration){
     Countly.q.push(['remove_consent', response]);
     localStorage.setItem("consents", JSON.stringify([]));
     localStorage.setItem("refuseUntil", Date.now() + refuseDuration * 1000)
-    document.getElementById("gdpr-consent").style.display = 'none';
-    if (document.getElementById("gdpr-is-opted-in")) {
-      document.getElementById("gdpr-is-opted-in").style.display = 'none';
-      document.getElementById("gdpr-is-opted-out").style.display = 'block';
-    }
+    toggleConsentDisplay(false);
 }
 </script>
 
@@ -181,7 +183,8 @@ function removeConsent(refuseDuration){
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/privacy">Privacy</a></li>
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+        <li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li>
     </ul>
 </nav>
 
@@ -228,32 +231,14 @@ function removeConsent(refuseDuration){
         </div>
 
         <article>
-            <h2 class="post-title"><a href="/posts/0002-features-not-functions/">Test Features, not Functions</a></h2>
+            <h2 class="post-title"><a href="/posts/0000-wip/">Blog WIP</a></h2>
 
             
 
             <div class="post-content">
                 
 
-<h2 id="nobody-is-taught-how-to-test">Nobody is Taught How to Test</h2>
-
-<p>As we learn the trade of building software for industry, we are (hopefully)
-taught that one of the key aspects of being a software engineer is to test the
-code you write.  Yet there is very little instruction given around <em>how</em> we
-should write tests.</p>
-
-<p>For the most part, exposure will be limited to one or two classes requiring unit
-tests as part of the work submitted, or comments on pull requests asking with
-various levels of politeness to not reduce the code coverage percentage.  Folks
-really do like their green banners, tho, so I can&rsquo;t blame them.</p>
-
-<blockquote>
-<p><em>Green is the prime color of the world, and that from which its loveliness arises.</em></p>
-
-<p><em>- Pedro Calderon de la Barca (Definitely not a software engineer)</em></p>
-</blockquote>
-
-<h1 id="rest-of-article-is-wip"><code>// Rest of article is WIP</code></h1>
+<h1 id="first-blog-post-is-a-work-in-progress"><code>First blog post is a work in progress</code></h1>
 
             </div>
         </article>
@@ -262,12 +247,12 @@ really do like their green banners, tho, so I can&rsquo;t blame them.</p>
 
         <div class="post-info">
                 <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="/tags/development">development</a></span><span class="tag"><a href="/tags/testing">testing</a></span><span class="tag"><a href="/tags/coverage">coverage</a></span><span class="tag"><a href="/tags/opinion">opinion</a></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="/tags/development">development</a></span><span class="tag"><a href="/tags/blog">blog</a></span><span class="tag"><a href="/tags/wip">wip</a></span>
                 </p>
 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>136 Words</p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>8 Words</p>
 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-03-01 22:20 -0800</p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-03-04 09:39 -0800</p>
         </div>
 
         
