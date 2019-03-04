@@ -13,10 +13,10 @@ theme = "hello-friend-ng"
   description = "Personal website and Blog of Taylor Wrobel"
   keywords = ["personal", "homepage", "blog", "development", "programming", "software"]
   images = [""]
-  homeSubtitle = "Adventures in the creation, testing, qualification, and destruction of software"
+  homeSubtitle = "On the creation, testing, qualification, and destruction of software"
 
   # Directory name of your blog content (default is `content/posts`)
-  contentTypeName = "posts"
+  contentTypeName = "content/posts"
   # Default theme "light" or "dark"
   defaultTheme = "dark"
 
@@ -43,22 +43,17 @@ theme = "hello-friend-ng"
     [languages.en.params.logo]
       logoText = "cd ~/wrobel-dot-dev"
       logoHomeLink = "/"
-    # or
-    #
-    # path = "/img/your-example-logo.svg"
-    # alt = "Your example logo alt text"
 
-# And you can even create generic menu
 [menu]
   [[menu.main]]
     identifier = "blog"
     name       = "Blog"
     url        = "/posts"
-  [[menu.main]]
+  [[menu.secondary]]
     identifier = "about"
     name       = "About"
     url        = "/about"
-  [[menu.main]]
+  [[menu.secondary]]
     identifier = "privacy"
     name       = "Privacy"
     url        = "/privacy"
