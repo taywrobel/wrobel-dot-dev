@@ -7,17 +7,17 @@ The information that is collected includes:
 
  - **Sessions**: Metrics on when, how often and how long users use the website
  - **Page Views**: Metrics on which views/pages users access
- - **Clicks**: Reports user clicks to form a heat map, including clicks following links
- - **Scrolls**: Reports user scrolling to form a scroll heat map
  - **Crashes**: Reports javascript errors thrown by the UI code
- - **GeoIP**: Coarse location information based on IP data (no GPS or other granular data is collected)
- - **UserAgent**: Data set by your browser with system information, including:
+ - **GeoIP**: Coarse location information based on IP data (no GPS or other granular location data is collected)
+ - **UserAgent**: Data set by your browser with system information, usually including:
    - *Browser*: Web browser type and version
    - *System*: Operating system and version
    - *Resolution*: Screen size of the device
 
 I do not sell these metrics or use them for any advertising purposes.  They are purely for my own reference when it
-comes to looking at how people are engaging with the content here.
+comes to looking at how people are engaging with the content here.  In the event that the policy changes in the future,
+all users will automatically have their consent removed, all collected data will be purged, and a new privacy page will
+be published here.
 
 #### Trust, but Verify
 
@@ -25,8 +25,8 @@ The code which records metrics to the Countly server, as with the entirety of th
 like to review it.  The specific file which handles the metrics configuration, as well as opt-in and opt-out logic can
 be found [here](https://github.com/twrobel3/hugo-theme-hello-friend-ng/blob/master/layouts/partials/countly.html).
 
-And of course, since all that code is running client-side, you can pop open your browser's web inspector and verify that
-nothing has been changed from what's shown in the repository.
+This notice is also versioned in git, and the history can be found [here]
+(https://github.com/twrobel3/wrobel-dot-dev/blob/master/content/privacy.md).
 
 <hr>
 
